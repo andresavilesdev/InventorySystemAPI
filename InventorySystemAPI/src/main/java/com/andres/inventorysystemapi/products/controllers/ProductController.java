@@ -63,6 +63,7 @@ public class ProductController {
 
     }
 
+    @GetMapping
     public ResponseEntity<List<OutProductDto>> finAllProducts(){
 
         List<OutProductDto> productList = productService.getProducts()
@@ -73,7 +74,8 @@ public class ProductController {
         return ResponseEntity.ok(productList);
     }
 
-    public ResponseEntity<?> deleteProduct(Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         productService.deleteProductById(id);
         return ResponseEntity.ok("Product with id:" + id + " have been deleted");
     }
